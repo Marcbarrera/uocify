@@ -1,0 +1,173 @@
+const main = document.getElementById("main");
+
+main.innerHTML = `
+<main class="page-search" id="load-content">
+
+	
+			<!-- Actualització PAC3 Exercici 1.2: Tot i que no era un requisit essencial, he deixat i canviat el text h1 per donar informació bàsica a l'usuari per a que realitzi una cerca (ja que es el que volem assolir en aquest exercici) -->
+			<!-- <h1 class="main-title"> Realiza una <span>Búsqueda</span></h1> Ja no és necessari emprar aquesta part del codi, només l'he deixat com a recordatori i per explicar al detall el meu procés de desenvolupament dels exercicis -->
+			<!-- OBSERVACIÓ: Si a l'span li afegim la id="search-main" i al formulari existent a search.html li canviem l'acció a './index.html' podem comprovar com el sistema funciona de forma bidireccional -->
+			<!-- Actualització PAC 3 Exercici 1.3: Com què en aquest exercici tornem a emplenar index.html amb dades de cerca dels Beatles, he tornar a deixar la capçalera original -->
+			<h1 class="main-title">Resultados de <span>The Beatles</span></h1>
+
+			<!-- Actualització PAC 3 Exercici 1.3: No era un requisit però m'ha semblat interessant manipular i mostrar més dades rebudes de Deezer; simulant una cerca més complerta i funcional -->
+			<!-- He inserit totes les seccions treballades en la PAC 1 de manera que inserim com a primer element l'àlbum de deezer i l'acompanyem de dos elements més carregats de forma local -com haviem fet en la PAC 1- -->
+			 <!-- Així, trobarem que totes les seccions son funcionals i mostren el contingut esmentat; emprant així moltes més dades descarregades des de Deezer: cançons, duració de cançons, títols, imatges, info... -->
+			 
+			 <section id="detall">
+			 
+			 </section>
+			 <section class="tabs">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<a class="nav-link active" id="all-tab" data-toggle="tab" href="#tabAll" role="tab" aria-controls="tabAll" aria-selected="true">Todo</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" id="track-tab" data-toggle="tab" href="#tabTracks" role="tab" aria-controls="tabTracks" aria-selected="false">Canciones</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" id="album-tab" data-toggle="tab" href="#tabAlbums" role="tab" aria-controls="tabAlbums" aria-selected="false">Álbumes</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" id="artist-tab" data-toggle="tab" href="#tabArtists" role="tab" aria-controls="tabArtists" aria-selected="false">Artistas</a>
+					</li>  
+				</ul>
+			</section>
+
+			
+			<div class="tab-content" id="tabContent">
+
+				 <!-- ********************************************* ALL **************************************************************  -->
+			
+				<div class="tab-pane fade show active" id="tabAll" role="tabpanel" aria-labelledby="all-tab">
+					<h2 class="title">Canciones <i class="fa fa-chevron-right icon" aria-hidden="true"></i></h2>
+					<table class="track-list table">
+						
+					</table>
+
+					<h2 class="title">Álbumes <i class="fa fa-chevron-right icon" aria-hidden="true"></i></h2>
+					
+					<section class="album-list row" id="album-list">
+						<article class="album col-sm-6 col-md-4 col-lg-2">
+							<img class="album-cover" src="./images/albums/sgt-peppers.jpg" alt="Sgt. Pepper's Lonely Hearts Club Band (Remastered)">
+							<span class="album-title"></span>
+							<span class="album-artist"></span>
+						</article>
+
+						<article class="album col-sm-6 col-md-4 col-lg-2">
+							<img class="album-cover" src="" alt="">
+							<span class="album-title"></span>
+							<span class="album-artist"></span>
+						</article>	
+					</section>
+
+					<h2 class="title">Artistas <i class="fa fa-chevron-right icon" aria-hidden="true"></i></h2>
+
+					<section class="artist-list row">
+						<article class="artist col-sm-6 col-md-4 col-lg-2">
+							<img class="artist-picture" src="" alt="The Beatles">
+							<span class="artist-name"></span>
+							<span class="artist-fans"></span>
+						</article>
+
+						<article class="artist col-sm-6 col-md-4 col-lg-2">
+							<img class="artist-picture" src="./images/artists/the-beatles-recovered.jpg" alt="The Beatles Recovered Band">
+							<span class="artist-name"></span>
+							<span class="artist-fans"></span>
+						</article>
+					</section>
+				</div>
+
+				 <!-- ******************************* SONGS *********************************************************  -->
+
+				<div class="tab-pane fade" id="tabTracks" role="tabpanel" aria-labelledby="track-tab">
+					<h2 class="title">292 canciones</h2>
+
+					<table class="track-list table">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Canción</th>
+								<th>Artista</th>
+								<th>Álbum</th>
+								<th class="aright">D.</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="track">
+								<td class="track-cover">
+									<img src="images/albums/let-it-be.jpg" alt="Let It Be (Remastered 2009)">
+								</td>
+								
+								<td class="track-artist">
+									The Beatles
+								</td>
+								<td class="track-album">
+									Let It Be (Remastered)
+								</td>
+								<td class="track-duration">
+									03:02
+								</td>                                
+							</tr>
+
+							<tr class="track">
+								<td class="track-cover">
+									<img src="images/albums/come-together.jpg" alt="Come Together (2019 Mix)">
+								</td>
+								<td class="track-title">
+									Come Together (2019 Mix)
+								</td>
+								<td class="track-artist">
+									The Beatles
+								</td>
+								<td class="track-album">
+									Come Together
+								</td>
+								<td class="track-duration">
+									04:20
+								</td>                                
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				 <!-- ******************************* ALBUMS *************************************************************** -->
+				<div class="tab-pane fade" id="tabAlbums" role="tabpanel" aria-labelledby="album-tab">
+					<h2 class="title">284 álbumes</h2>
+					<section class="album-list row">
+						<article class="album col-sm-6 col-md-4 col-lg-2">
+							<img class="album-cover" src="./images/albums/sgt-peppers.jpg" alt="Sgt. Pepper's Lonely Hearts Club Band (Remastered)">
+							<span class="album-title">Sgt. Pepper's Lonely Hearts Club Band (Remastered)</span>
+							<span class="album-artist">The Beatles</span>
+						</article>
+
+						<article class="album col-sm-6 col-md-4 col-lg-2">
+							<img class="album-cover" src="./images/albums/yellow-submarine.jpg" alt="Yellow Submarine Songtrack">
+							<span class="album-title">Yellow Submarine Songtrack</span>
+							<span class="album-artist">The Beatles</span>
+						</article>	
+					</section>
+				</div>
+				
+				 <!-- ****************************** ARTISTS **********************************************************  -->
+				<div class="tab-pane fade" id="tabArtists" role="tabpanel" aria-labelledby="artist-tab">
+					<h2 class="title">71 artistas</h2>
+					<section class="artist-list row">
+						<article	class="artist col-sm-6 col-md-4 col-lg-3 col-xl-2">
+							<img class="artist-picture" src="./images/artists/the-beatles.jpg" alt="The Beatles">
+							<span class="artist-name">The Beatles</span>
+							<span class="artist-fans">5.751.832 fans</span>
+						</article>
+
+						<article	class="artist col-sm-6 col-md-4 col-lg-3 col-xl-2">
+							<img class="artist-picture" src="./images/artists/the-beatles-recovered.jpg" alt="The Beatles Recovered Band">
+							<span class="artist-name">The Beatles Recovered Band</span>
+							<span class="artist-fans">187.118 fans</span>
+						</article>
+					</section>
+				</div>
+			</div> 
+	  	</main>
+
+
+`;
