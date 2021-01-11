@@ -10,7 +10,7 @@ function secondsToString(seconds) {
 
   
 
-  function loadSongs(id){
+  function loadPlaylist(id){
     console.log(id);
     document.getElementById("container-llistes").style.display="none";
     document.getElementById("link-back").style.display="block";
@@ -70,7 +70,7 @@ function loadHome(){
                 console.log(titol)
 
                 $("#llistes").append(`
-                <a onclick="loadSongs(${llista.id})">
+                <a onclick="loadPlaylist(${llista.id})">
                 <article class="llista-card">
                 <img src="${llista.picture_medium}">
                 <h4>${llista.title}</h4>
