@@ -1,9 +1,6 @@
 'use strict'
-/* Codi JavaScript PAC 3 Exercici 1 de Marc Segura */
 
-// Funció auxiliar que rep segons com a paràmetre i els retorna en format minuts:segons.
 function secondsToString(seconds) {
-    // Transforma cada 60 segons en 1 minut i la resta com a segons; retorna el resultat amb el format corresponent
     var minute = Math.floor((seconds / 60) % 60);
     minute = (minute < 10)? '0' + minute : minute;
     var second = seconds % 60;
@@ -38,7 +35,7 @@ function secondsToString(seconds) {
     });
 
         request.done(function() {
-            setTimeout(showContent(), 1000); // la funció setTimeout ens permet guanyar una mica de temps a l'hora de fer les transicions per mostrar el contingut descarregat. No és estrictament necessària per al correcte desenvolupament de la tasca en aquest cas però pot ser molt útil en altres situacions similars.
+            setTimeout(showContent(), 1000); 
         });
 
         request.fail(function( jqXHR, textStatus ) {
@@ -47,8 +44,8 @@ function secondsToString(seconds) {
             $("#loading-msg").show();
         });
         function showContent(){
-            $("#loading-icon").hide().fadeOut( 'slow' );  // Icona de càrrega desapareix lentament
-            $('#load-content').show().slideDown( 1000 );  // Apareix el contingut del document de dalt a baix amb efecte desplegable en aprox. 1 segon
+            $("#loading-icon").hide().fadeOut( 'slow' );  
+            $('#load-content').show().slideDown( 1000 );  
         }
         }
 
@@ -74,7 +71,7 @@ function loadHome(){
 
                 $("#llistes").append(`
                 <a onclick="loadSongs(${llista.id})">
-                <article>
+                <article class="llista-card">
                 <img src="${llista.picture_medium}">
                 <h4>${llista.title}</h4>
                 </article>
@@ -87,18 +84,14 @@ function loadHome(){
     
     // PAC 3 Exercici 1.4: Icona de càrrega
     function showContent(){
-        $("#loading-icon").hide().fadeOut( 'slow' );  // Icona de càrrega desapareix lentament
-        $('#load-content').show().slideDown( 1000 );  // Apareix el contingut del document de dalt a baix amb efecte desplegable en aprox. 1 segon
+        $("#loading-icon").hide().fadeOut( 'slow' );  
+        $('#load-content').show().slideDown( 1000 );  
     }
       
-
-    // PAC 3 Exercici 1.4: Com ja s'ha esmentat unes linies més amunt, podem controlar els errors o les accions un cop hem rebut les dades emprant aquestes funcions similars a error i complete
-    // Si la petició ha finalitzat amb èxit, procedeix a mostrar el contingut
     request.done(function() {
-        setTimeout(showContent(), 1000); // la funció setTimeout ens permet guanyar una mica de temps a l'hora de fer les transicions per mostrar el contingut descarregat. No és estrictament necessària per al correcte desenvolupament de la tasca en aquest cas però pot ser molt útil en altres situacions similars.
+        setTimeout(showContent(), 1000); 
     });
     
-    // Si hi ha algun problema durant la petició: mostra els errors al centre de la pantalla
     request.fail(function( jqXHR, textStatus ) {
         $("#loading-img").hide();
         $("#loading-msg").append('<span> Error: ' + jqXHR.status + ", " + textStatus + '</span>');
@@ -107,36 +100,27 @@ function loadHome(){
 }
             
 
-// PAC3 Exercici 1.1: Popover de finestra d'usuari emprant jQuery
 $(document).ready(function ( ) {
     
-    // PAC 3 Exercici 1.1: Popover d'usuari
-    // Activar popover mitjançant la tecla enter (exercici addicional)
-    // Anula outline de tabindex via clic...
+   
     $('[tabindex]').on('focus', '.user', function( ) {
         $(".user").css('outline', 'none');
     });
-    // pero es mostra si emprem el teclat per facilitar l'accessibilitat
     $('[tabindex]').on('keyup', function ( e ) {
         if(e.keyCode == 9){
             $(".user").css('outline', '');
         }
     });
 
-    // Si l'usuari prem la tecla enter amb el focus als elements .usuari, activa/desactiva popover 
     $(document).on('keypress', function (e) {
         if(e.which == 13){
             $('.user').popover( 'toggle' ).fadeIn( 'slow' );
         }
     });
 
-    // PAC 3 Exercici 1.1: Activar popover via clic sobre els elements .usuari (nom i icona d'usuari)
     $(document).on('click', function (e) {
-        // Mostra popover. Si en tinguèssim més d'un, seria més òptim emprar la classe o l'id de cadascun d'ells. Com que en tenim només 1 he aprofitat per procedir d'aquesta manera i aprofitar algunes
-        // característiques interessants dels atributs HTML (veure div de classe .usuari per a més informació)
         $('[data-toggle=popover]').popover();
 
-        // Si es fa clic al document fora del rang d'.usuari, amaga el popover
         $('[data-toggle=popover]').each(function () {
             if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.user').has(e.target).length === 0) {
                 $(this).popover('hide');
@@ -149,10 +133,15 @@ $(document).ready(function ( ) {
 
 
 function getTracks(query){
+    $("#search-page").empty();
+  
+
+
+
 var request = $.ajax({
     type: 'GET',
     url: `https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=track:"${query}"`, 
-    beforeSend: function() { $("#loading-icon").show(); $('#load-content').hide() }, 
+    beforeSend: function() { $("#loading-icon").show(); $('#load-content').hide() },
     success: function(data) {
         console.log("tracks")
         let tracks=data.data;
@@ -164,12 +153,13 @@ var request = $.ajax({
             <h4>${tracks[i].title}</h4>
             </article>
             `);
-            console.log(tracks[i].title)
+            console.log(tracks[i].title);
             document.getElementById("container-llistes").style.display="none";
 
         }
+        console.log(tracks)
         request.done(function() {
-            setTimeout(showContent(), 1000); // la funció setTimeout ens permet guanyar una mica de temps a l'hora de fer les transicions per mostrar el contingut descarregat. No és estrictament necessària per al correcte desenvolupament de la tasca en aquest cas però pot ser molt útil en altres situacions similars.
+            setTimeout(showContent(), 1000); 
         });
     
         request.fail(function( jqXHR, textStatus ) {
@@ -178,8 +168,8 @@ var request = $.ajax({
             $("#loading-msg").show();
         });
         function showContent(){
-            $("#loading-icon").hide().fadeOut( 'slow' );  // Icona de càrrega desapareix lentament
-            $('#load-content').show().slideDown( 1000 );  // Apareix el contingut del document de dalt a baix amb efecte desplegable en aprox. 1 segon
+            $("#loading-icon").hide().fadeOut( 'slow' ); 
+            $('#load-content').show().slideDown( 1000 );  
         }
 
     }
@@ -212,7 +202,7 @@ function getArtists(query){
     })
 
     request.done(function() {
-        setTimeout(showContent(), 1000); // la funció setTimeout ens permet guanyar una mica de temps a l'hora de fer les transicions per mostrar el contingut descarregat. No és estrictament necessària per al correcte desenvolupament de la tasca en aquest cas però pot ser molt útil en altres situacions similars.
+        setTimeout(showContent(), 1000); 
     });
 
     request.fail(function( jqXHR, textStatus ) {
@@ -221,8 +211,8 @@ function getArtists(query){
         $("#loading-msg").show();
     });
     function showContent(){
-        $("#loading-icon").hide().fadeOut( 'slow' );  // Icona de càrrega desapareix lentament
-        $('#load-content').show().slideDown( 1000 );  // Apareix el contingut del document de dalt a baix amb efecte desplegable en aprox. 1 segon
+        $("#loading-icon").hide().fadeOut( 'slow' );  
+        $('#load-content').show().slideDown( 1000 );  
     }
 }
 
@@ -247,7 +237,7 @@ function getAlbums(query){
 
             }
             request.done(function() {
-                setTimeout(showContent(), 1000); // la funció setTimeout ens permet guanyar una mica de temps a l'hora de fer les transicions per mostrar el contingut descarregat. No és estrictament necessària per al correcte desenvolupament de la tasca en aquest cas però pot ser molt útil en altres situacions similars.
+                setTimeout(showContent(), 1000); 
             });
         
             request.fail(function( jqXHR, textStatus ) {
@@ -256,8 +246,8 @@ function getAlbums(query){
                 $("#loading-msg").show();
             });
             function showContent(){
-                $("#loading-icon").hide().fadeOut( 'slow' );  // Icona de càrrega desapareix lentament
-                $('#load-content').show().slideDown( 1000 );  // Apareix el contingut del document de dalt a baix amb efecte desplegable en aprox. 1 segon
+                $("#loading-icon").hide().fadeOut( 'slow' );  
+                $('#load-content').show().slideDown( 1000 ); 
             }
            
         }
@@ -290,13 +280,10 @@ $("#searchForm").on("submit", callback => {
   });
 
 
-// Afegim un event listener que espera a que es carregui el contingut del document i, en cas d'existir l'element indicat, procedeix a inserir els nous paràmetres rebuts via url i gestionats per la funció getParameters ()
 document.addEventListener('DOMContentLoaded', function(){
-    // Cerquem per id l'span contingut a la capçalera h1 ".main-title" del document i inserim els paràmetres de la cerca per a mostrar-los en pantallal. El condicional és perquè això només volem que passi en la pàgina de cerca 'search' però en la resta no
     if(document.getElementById('main-search') !== null){
         document.getElementById('main-search').innerHTML = getParameters("search-field");
 
-        // search-field és el nom del input el qual passa els mots de cerca a la url
     }
 });
 

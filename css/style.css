@@ -70,3 +70,39 @@
 #load-content {
     display: none;
 }
+
+#container-llistes{
+display: flex;
+flex-direction: column;
+max-width: 960px;
+width:100%;
+margin:auto;
+justify-content: center;
+align-items: center;
+
+}
+
+.logo-gran{
+    width:25%;
+}
+
+#llistes {
+    display: flex;
+    justify-content:space-between ;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.llista-card{
+    margin-top: 30px;
+    margin-bottom: 40px;
+
+}
+.llista-card h2,p{
+    text-align: center;
+}
+
+.llista-card h4{
+    margin-top: 20px;
+    text-align: center;
+}
